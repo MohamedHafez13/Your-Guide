@@ -5,6 +5,7 @@ import 'package:zayed/modules/Login/login_cubit.dart';
 import 'package:zayed/modules/Login/login_states.dart';
 import 'package:zayed/modules/register/register_screen.dart';
 import 'package:zayed/shared/component/components.dart';
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
@@ -13,6 +14,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   var formKey = GlobalKey<FormState>();
@@ -121,7 +123,6 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           );
         },
-
       ),
     );
   }
