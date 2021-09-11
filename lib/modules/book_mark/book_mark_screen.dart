@@ -40,16 +40,13 @@ class _BookMarkScreenState extends State<BookMarkScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  width: MediaQuery
-                      .of(context)
-                      .size
-                      .width / 2,
+                  width: MediaQuery.of(context).size.width / 2,
                   child: ElevatedButton(
                     onPressed: () {},
                     child: Text("Reload"),
                     style: ButtonStyle(
                       backgroundColor:
-                      MaterialStateProperty.all<Color>(Color(0xfff94d00)),
+                          MaterialStateProperty.all<Color>(Color(0xfff94d00)),
                     ),
                   ),
                 ),
@@ -60,6 +57,7 @@ class _BookMarkScreenState extends State<BookMarkScreen> {
       ),
     );
   }
+
   // Widget whenBookmarkItem(BookMarkItem bookMarkItem) {
   //   return InkWell(
   //     onTap: () {
@@ -128,7 +126,7 @@ class _BookMarkScreenState extends State<BookMarkScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
+      body: whenNoBookmark(),
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 Widget defaultTextForm({
   required TextEditingController controller,
@@ -6,6 +7,7 @@ Widget defaultTextForm({
   required String labelText,
   IconData? prefixIcon,
   IconData? suffixIcon,
+  VoidCallback? suffixIconFunction,
   FormFieldValidator<String>? validation,
   GestureTapCallback? onTap,
   required TextInputType type,
@@ -17,8 +19,14 @@ Widget defaultTextForm({
       border: OutlineInputBorder(),
       hintText: hintText,
       labelText: labelText,
-      prefixIcon: Icon(prefixIcon),
-      suffixIcon: Icon(suffixIcon),
+      prefixIcon: IconButton(
+          icon: Icon(prefixIcon),
+        onPressed: (){},
+      ),
+      suffixIcon: IconButton(
+        icon: Icon(suffixIcon),
+        onPressed: suffixIconFunction,
+      ),
     ),
     validator: validation,
     onTap: onTap,
@@ -47,4 +55,41 @@ Widget defaultButton({
         ),
         onPressed: onPress),
   );
+}
+void showToast({
+  required String text,
+  required Color toastColor,
+}) {
+  Fluttertoast.showToast(
+    msg: text,
+    toastLength: Toast.LENGTH_SHORT,
+    gravity: ToastGravity.BOTTOM,
+    timeInSecForIosWeb: 1,
+    backgroundColor: toastColor,
+    textColor: Colors.white,
+    fontSize: 16.0,
+  );
+}
+enum ToastColors {
+  SUCCESS,
+  ERROR,
+  WARNING,
+}
+
+Color setToastColor(ToastColors color) {
+  Color c;
+
+  switch (color) {
+    case ToastColors.ERROR:
+      c = Colors.red;
+      break;
+    case ToastColors.SUCCESS:
+      c = Colors.green;
+      break;
+    case ToastColors.WARNING:
+      c = Colors.amber;
+      break;
+  }
+
+  return c;
 }

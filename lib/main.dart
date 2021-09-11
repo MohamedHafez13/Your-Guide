@@ -1,8 +1,21 @@
+import 'package:bloc/bloc.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:zayed/layout/home/my_home_page.dart';
+import 'package:zayed/modules/Login/login_screen.dart';
+import 'package:zayed/modules/Login/login_states.dart';
+import 'package:zayed/modules/splash_screen/splash_screen.dart';
 
-void main() {
+import 'modules/register/register_screen.dart';
+import 'shared/observer/observer.dart';
+
+void main()async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  Bloc.observer = MyBlocObserver();
+
   runApp(MyApp());
+
 }
 
 class MyApp extends StatelessWidget {
@@ -11,7 +24,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MyHomePage(),
+      //home: MyHomePage(),
+      // home :RegisterScreen(),
+      home :SplashScreen(),
     );
   }
 }

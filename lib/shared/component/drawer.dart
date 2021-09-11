@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zayed/modules/Login/login_screen.dart';
 import 'package:zayed/modules/register/register_screen.dart';
 
@@ -114,7 +115,13 @@ Drawer myDrawer(){
           ),
           ListTile(
             title: Text("LogOut"),
-            onTap: () {},
+            onTap: () async {
+              final SharedPreferences preferences =
+              await SharedPreferences.getInstance();
+              preferences.remove("uid");
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => LoginScreen()));
+            },
             leading: Icon(Icons.logout),
           ),
           ListTile(

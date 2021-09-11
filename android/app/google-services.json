@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "11383376816",
+    "project_id": "zayed-689f2",
+    "storage_bucket": "zayed-689f2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:11383376816:android:9ac88a4fed68498611e475",
+        "android_client_info": {
+          "package_name": "com.example.zayed"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "11383376816-n6vsutifj794mp2ikcqodk0ubvqgso0o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.zayed",
+            "certificate_hash": "2c9aa81b6f91d5b38e35272dae9a11c335c973a3"
+          }
+        },
+        {
+          "client_id": "11383376816-6ck5qu1tbsdsi27hj7otn1ejmcuhbok3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDO7gZr6Bc2T0cSGPjEY9uhbYaY9S2x0Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "11383376816-6ck5qu1tbsdsi27hj7otn1ejmcuhbok3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

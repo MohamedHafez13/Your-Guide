@@ -19,12 +19,21 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController passwordController = TextEditingController();
   var formKey = GlobalKey<FormState>();
 
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (BuildContext context) =>LoginCubit(),
       child: BlocConsumer<LoginCubit,LoginStates>(
-        listener: (BuildContext context, Object? state) {  },
+        listener: (BuildContext context,  state) {
+          if(state is LoginErrorState){
+            showToast(text: state.error, toastColor: Colors.red);
+          }else if (state is LoginSuccessState )
+            {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => MyHomePage()));
+            }
+        },
         builder: (BuildContext context, state) {
           return  Scaffold(
             appBar: AppBar(
@@ -63,14 +72,17 @@ class _LoginScreenState extends State<LoginScreen> {
                         defaultTextForm(
                             controller: passwordController,
                             type: TextInputType.visiblePassword,
-                            isPassword: true,
+                            isPassword: LoginCubit.get(context).obscureText,
                             hintText: "Password",
                             labelText: "Password",
                             prefixIcon: Icons.lock_outline,
-                            suffixIcon: Icons.remove_red_eye,
+                            suffixIcon: LoginCubit.get(context).iconData,
+                            suffixIconFunction: (){
+                              LoginCubit.get(context).changePasswordVisibilityIcon();
+                            },
                             validation: (String? value) {
                               if (value!.isEmpty) {
-                                return "Enter Your Email";
+                                return "Enter Your Password";
                               }
                             }),
                         SizedBox(
@@ -84,8 +96,12 @@ class _LoginScreenState extends State<LoginScreen> {
                             onPress: () {
                               if (formKey.currentState != null &&
                                   formKey.currentState!.validate()) {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => MyHomePage()));
+
+                                LoginCubit.get(context).userLogin(
+                                    email: emailController.text,
+                                    password: passwordController.text,
+                                );
+
                               }
                             }
                         ),
