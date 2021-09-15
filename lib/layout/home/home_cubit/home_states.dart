@@ -1,6 +1,11 @@
-abstract class HomeStates{}
+import 'package:zayed/models/product_item.dart';
 
-class HomeInitialState extends HomeStates{}
+abstract class HomeStates {}
 
-class HomeNavigationBarState extends HomeStates{}
+class HomeInitialState extends HomeStates {}
+
+class HomeNavigationBarState extends HomeStates {}
+
+class HomeOpenRecentProduct extends HomeStates {}
+class HomeGetOpenedRecentProduct extends HomeStates {}
 

@@ -1,13 +1,9 @@
 import 'dart:async';
-
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zayed/layout/home/my_home_page.dart';
 import 'package:zayed/models/user_login.dart';
-import 'package:zayed/modules/Login/login_cubit.dart';
 import 'package:zayed/modules/Login/login_screen.dart';
 import 'package:zayed/modules/Login/login_states.dart';
 import 'package:zayed/modules/home_Page/home.dart';
@@ -26,7 +22,9 @@ class _SplashScreenState extends State<SplashScreen> {
   Future getUid()async{
     SharedPreferences preferences =await SharedPreferences.getInstance();
     var id = preferences.getString('uid');
-    userId =id!;
+    if(id != null){
+      userId =id;
+    }
   }
   @override
   void initState() {
