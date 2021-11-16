@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zayed/modules/register/register_states.dart';
@@ -8,7 +9,8 @@ class RegisterCubit extends Cubit<RegisterStates> {
   RegisterCubit() : super(RegisterInitialState());
 
   static RegisterCubit get(context) => BlocProvider.of(context);
-
+  IconData iconData = Icons.visibility_off_outlined;
+  bool obscureText = true ;
   void createUser({
     required String name,
     required String email,
@@ -30,5 +32,11 @@ class RegisterCubit extends Cubit<RegisterStates> {
   void setUId()async{
     SharedPreferences preferences =await SharedPreferences.getInstance();
     preferences.setString('uid',"${FirebaseAuth.instance.currentUser!.uid}" );
+  }
+  void changePasswordVisibilityIcon()
+  {
+    obscureText = !obscureText;
+    iconData = obscureText? Icons.visibility_off_outlined:Icons.remove_red_eye;
+    emit(ChangePasswordVisibility());
   }
 }

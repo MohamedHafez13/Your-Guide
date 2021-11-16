@@ -4,6 +4,7 @@ import 'package:zayed/layout/home/my_home_page.dart';
 import 'package:zayed/modules/register/register_cubit.dart';
 import 'package:zayed/modules/register/register_states.dart';
 import 'package:zayed/shared/component/components.dart';
+import 'package:zayed/shared/component/home_widgets/components.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -87,14 +88,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         defaultTextForm(
                             controller: passwordController,
                             type: TextInputType.visiblePassword,
-                            isPassword: true,
+                            isPassword:  RegisterCubit.get(context).obscureText,
                             hintText: "Password",
                             labelText: "Password",
                             prefixIcon: Icons.lock_outline,
-                            suffixIcon: Icons.remove_red_eye,
+                            suffixIcon: RegisterCubit.get(context).iconData,
+                            suffixIconFunction: (){
+                              RegisterCubit.get(context).changePasswordVisibilityIcon();
+                            },
                             validation: (String? value) {
                               if (value!.isEmpty) {
-                                return "Enter Your Email";
+                                return "Enter Your Password";
                               }
                             }),
                         SizedBox(
@@ -108,7 +112,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             prefixIcon: Icons.phone,
                             validation: (String? value) {
                               if (value!.isEmpty) {
-                                return "Enter Your Email";
+                                return "Enter Your Phone";
                               }
                             }),
                         SizedBox(

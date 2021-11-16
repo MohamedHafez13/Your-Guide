@@ -25,11 +25,19 @@ class HomeCubit extends Cubit<HomeStates>{
     emit(HomeNavigationBarState());
   }
 
+  int productIndex =0;
     List <ProductItem> productItem=[];
+  // ProductItem? productItem;
   void  openRecentProduct(ProductItem item) {
     productItem.add(item);
      emit(HomeOpenRecentProduct());
   }
+
+  // ProductItem getProduct(int index)
+  // {
+  //   productIndex = index;
+  //   return productItem.elementAt(productIndex);
+  // }
 
 
 

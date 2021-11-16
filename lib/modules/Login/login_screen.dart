@@ -5,6 +5,7 @@ import 'package:zayed/modules/Login/login_cubit.dart';
 import 'package:zayed/modules/Login/login_states.dart';
 import 'package:zayed/modules/register/register_screen.dart';
 import 'package:zayed/shared/component/components.dart';
+import 'package:zayed/shared/component/home_widgets/components.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);

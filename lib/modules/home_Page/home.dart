@@ -3,9 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zayed/layout/home/home_cubit/home_cubit.dart';
 import 'package:zayed/layout/home/home_cubit/home_states.dart';
+import 'package:zayed/models/place_model.dart';
 import 'package:zayed/models/product_item.dart';
+import 'package:zayed/modules/notification/notification_screen.dart';
 import 'package:zayed/modules/products/open_product_screen.dart';
+import 'package:zayed/modules/search/search_screen.dart';
 import 'package:zayed/shared/component/components.dart';
+import 'package:zayed/shared/component/home_widgets/components.dart';
 import 'package:zayed/shared/component/drawer.dart';
 import 'package:zayed/shared/style/style.dart';
 
@@ -18,7 +22,8 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   var scaffoldKey = GlobalKey<ScaffoldState>();
-List<int> price = [100 , 200];
+  List<int> price = [100, 200];
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -32,7 +37,7 @@ List<int> price = [100 , 200];
             appBar: AppBar(
               backgroundColor: Colors.white,
               title: Text(
-                "Zayed Info ",
+                "Your Guid ",
                 style: labelsStyle(),
               ),
               leading: Builder(
@@ -51,7 +56,9 @@ List<int> price = [100 , 200];
                   color: Colors.black,
                 ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    navigate(context,NotificationScreen());
+                  },
                   icon: Icon(Icons.notifications_none_outlined),
                   color: Colors.black,
                 ),
@@ -63,7 +70,9 @@ List<int> price = [100 , 200];
                   Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        navigate(context,SearchScreen());
+                      },
                       child: Container(
                         padding: const EdgeInsets.all(8.0),
                         alignment: AlignmentDirectional.centerStart,
@@ -113,22 +122,32 @@ List<int> price = [100 , 200];
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
                                 itemCount: 2,
-                                itemBuilder: (context, index) => InkWell(
-                                  onTap: () {
-                                    HomeCubit.get(context).openRecentProduct(
-                                        ProductItem("Ahmed", "test", "sss",
-                                            'images/sh.jpg', '${price[index]}'));
-                                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Product(index)));
-                                  },
-                                  child: buildRecentProductItem(
-                                    context,
-                                    ProductItem("Ahmed", "test", "sss",
-                                        'images/sh.jpg', '${price[index]}'),
-                                  ),
+                                itemBuilder: (context, index) =>
+                                    buildRecentProductItem(
+                                  context,
+                                  ProductItem("Ahmed", "test", "sss",
+                                      'images/sh.jpg', '${price[index]}'),
                                 ),
                               ),
                             ),
                             mainHomeRow(label: "Shops nearby"),
+                            Container(
+                              height: MediaQuery.of(context).size.height / 2.7,
+                              width: double.infinity,
+                              child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: 5,
+                                itemBuilder: (context, index) => buildPlaceCard(
+                                    context,
+                                    PlaceModel(
+                                        'images/elNil.png',
+                                        '22',
+                                        'Nile Labs',
+                                        'الجيزه الشيخ زايد',
+                                        '10',
+                                        'Clinics')),
+                              ),
+                            ),
                           ],
                         ),
                       ),

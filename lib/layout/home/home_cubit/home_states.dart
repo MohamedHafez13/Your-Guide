@@ -7,5 +7,5 @@ class HomeInitialState extends HomeStates {}
 class HomeNavigationBarState extends HomeStates {}
 
 class HomeOpenRecentProduct extends HomeStates {}
-class HomeGetOpenedRecentProduct extends HomeStates {}
 
+class HomeGetOpenedRecentProduct extends HomeStates {}
