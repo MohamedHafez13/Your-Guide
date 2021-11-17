@@ -2,7 +2,7 @@
     package="com.example.zayed">
     <uses-permission android:name="android.permission.INTERNET" />
    <application
-        android:label="zayed"
+        android:label="Your Guide"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

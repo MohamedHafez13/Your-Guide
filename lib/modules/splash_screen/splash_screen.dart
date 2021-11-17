@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -28,7 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
   @override
   void initState() {
-    Timer(Duration(seconds: 2), () {
+    Timer(Duration(seconds: 3), () {
       getUid().whenComplete(() async {
         userId.isEmpty
             ? Navigator.of(context)
@@ -42,6 +43,22 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: CircularProgressIndicator(),);
+    return Scaffold(
+      backgroundColor: Colors.teal,
+      body: Center(
+        child: DefaultTextStyle(
+          style: const TextStyle(
+            fontSize: 50.0,
+          ),
+          child: AnimatedTextKit(
+            animatedTexts: [
+              WavyAnimatedText('Hello '),
+            ],
+            isRepeatingAnimation: true,
+
+          ),
+        ),
+      ),
+    );
   }
 }
