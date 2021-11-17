@@ -15,7 +15,11 @@ class _NotificationScreenState extends State<NotificationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor:  Color(0xffd3d3cf),
-      appBar: buildAppBar( pageTitle: "Notification"),
+      appBar: buildAppBar( pageTitle: "Notification",
+          firstIconNavigator: () {
+            Navigator.of(context).pop();
+          }
+      ),
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
